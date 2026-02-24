@@ -39,6 +39,9 @@ public class LoginPage {
     }
 
     public boolean isOnHomePage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.className("inventory_list")
+        ));
         return driver.getCurrentUrl().contains("inventory");
     }
 

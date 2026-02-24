@@ -12,6 +12,7 @@ import java.time.Duration;
 public class InventoryPage {
 
     WebDriver driver;
+    WebDriverWait wait;
 
     By inventoryItems = By.className("inventory_item");
     By cartBadge = By.className("shopping_cart_badge");
@@ -23,14 +24,28 @@ public class InventoryPage {
 
     public InventoryPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void addProductToCart(String productName) {
-        driver.findElements(inventoryItems).stream()
-                .filter(item -> item.findElement(By.className("inventory_item_name"))
-                        .getText().equals(productName))
-                .findFirst()
-                .ifPresent(item -> item.findElement(By.tagName("button")).click());
+
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(inventoryItems));
+
+        List<WebElement> items = driver.findElements(inventoryItems);
+
+        for (WebElement item : items) {
+            String name = item.findElement(By.className("inventory_item_name")).getText();
+
+            if (name.equals(productName)) {
+
+                WebElement button = item.findElement(By.tagName("button"));
+
+                wait.until(ExpectedConditions.elementToBeClickable(button)).click();
+                return;
+            }
+        }
+
+        throw new NoSuchElementException("Product not found: " + productName);
     }
 
     public String getCartBadgeCount() {
