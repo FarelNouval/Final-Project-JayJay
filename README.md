@@ -16,15 +16,29 @@
 ## Target Website
 https://www.saucedemo.com/
 
-## How to Run Web Test / Api Test
-- ./gradlew webTest
-- ./gradlew apiTest
-
-## Test Scenarios
+## Test Scenarios WeB UI
 - Login (valid & invalid)
 - Add product to cart
 - Filter product (Price & Name)
 - Logout
+
+## Base URL
+https://dummyapi.io/data/v1
+
+## Authentication
+Header required:
+- app-id: 63a804408eb0cb069b57e43a
+
+## Endpoint API
+- Get User by ID
+- Create User
+- Update User
+- Delete User
+- Get List of Tags
+
+## How to Run Web Test / Api Test
+- ./gradlew webTest
+- ./gradlew apiTest
 
 ## Reports
 HTML : reports/web-cucumber-report.html
