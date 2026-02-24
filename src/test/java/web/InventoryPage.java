@@ -31,15 +31,19 @@ public class InventoryPage {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.className("inventory_list")
         ));
 
-        By addToCartButton = By.xpath(
-                "//div[@class='inventory_item' and .//div[text()='" + productName + "']]//button"
-        );
 
-        System.out.println("Adding product: " + productName);
+        String formattedName = productName
+                .toLowerCase()
+                .replace(" ", "-");
+
+        String buttonId = "add-to-cart-" + formattedName;
+
+        By addToCartButton = By.id(buttonId);
 
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
     }
