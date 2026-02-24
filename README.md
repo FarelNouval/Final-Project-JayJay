@@ -17,8 +17,8 @@
 https://www.saucedemo.com/
 
 ## How to Run Web Test / Api Test
-./gradlew webTest
-./gradlew apiTest
+- ./gradlew webTest
+- ./gradlew apiTest
 
 ## Test Scenarios
 - Login (valid & invalid)
