@@ -21,3 +21,6 @@ jobs:
 
       - name: Run Web Test
         run: ./gradlew webTest
+        
+      - name: Run API Test
+        run: ./gradlew apiTest
