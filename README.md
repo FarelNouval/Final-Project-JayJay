@@ -22,9 +22,6 @@ https://www.saucedemo.com/
 - Filter product (Price & Name)
 - Logout
 
-## Base URL
-https://dummyapi.io/data/v1
-
 ## Authentication
 Header required:
 - app-id: 63a804408eb0cb069b57e43a
