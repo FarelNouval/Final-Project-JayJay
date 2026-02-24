@@ -29,23 +29,19 @@ public class InventoryPage {
 
     public void addProductToCart(String productName) {
 
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(inventoryItems));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        List<WebElement> items = driver.findElements(inventoryItems);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.className("inventory_list")
+        ));
 
-        for (WebElement item : items) {
-            String name = item.findElement(By.className("inventory_item_name")).getText();
+        By addToCartButton = By.xpath(
+                "//div[@class='inventory_item' and .//div[text()='" + productName + "']]//button"
+        );
 
-            if (name.equals(productName)) {
+        System.out.println("Adding product: " + productName);
 
-                WebElement button = item.findElement(By.tagName("button"));
-
-                wait.until(ExpectedConditions.elementToBeClickable(button)).click();
-                return;
-            }
-        }
-
-        throw new NoSuchElementException("Product not found: " + productName);
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
     }
 
     public String getCartBadgeCount() {
