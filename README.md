@@ -11,7 +11,7 @@
 
 ## Test Type
 - Web UI
-- API (Coming Soon)
+- API 
 
 ## Target Website
 https://www.saucedemo.com/
