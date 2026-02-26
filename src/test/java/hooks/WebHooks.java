@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import java.time.Duration;
+
 public class WebHooks {
 
     public static WebDriver driver;
@@ -26,6 +28,7 @@ public class WebHooks {
         options.addArguments("--window-size=1920,1080");
 
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @After("@web")

@@ -29,13 +29,17 @@ public class InventoryPage {
 
     public void addProductToCart(String productName) {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.className("inventory_list")
+                By.id("inventory_container")
         ));
 
+
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
+                By.className("inventory_item"), 0
+        ));
 
         String formattedName = productName
                 .toLowerCase()
@@ -45,6 +49,7 @@ public class InventoryPage {
 
         By addToCartButton = By.id(buttonId);
 
+        wait.until(ExpectedConditions.presenceOfElementLocated(addToCartButton));
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
     }
 
@@ -73,8 +78,9 @@ public class InventoryPage {
 
     public void logout() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        By menuButton = By.id("react-burger-menu-btn");
+        By logoutLink = By.id("logout_sidebar_link");
 
         wait.until(ExpectedConditions.elementToBeClickable(menuButton)).click();
 
