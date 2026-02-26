@@ -27,7 +27,7 @@ public class InventoryPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void addProductToCart(String productName) {
+    public void addBackpackToCart() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -36,25 +36,10 @@ public class InventoryPage {
                 By.id("inventory_container")
         ));
 
+        By backpackButton = By.id("add-to-cart-sauce-labs-backpack");
 
-        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
-                By.className("inventory_item"), 0
-        ));
-
-
-        String formattedName = productName
-                .toLowerCase()
-                .replace(" ", "-")
-                .replace(".", "")
-                .trim();
-
-        String buttonId = "add-to-cart-" + formattedName;
-
-        By addToCartButton = By.id(buttonId);
-
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(addToCartButton));
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(backpackButton));
+        wait.until(ExpectedConditions.elementToBeClickable(backpackButton)).click();
     }
 
     public String getCartBadgeCount() {

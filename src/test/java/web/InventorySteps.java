@@ -14,9 +14,9 @@ public class InventorySteps {
     WebDriver driver = WebHooks.driver;
     InventoryPage inventoryPage = new InventoryPage(driver);
 
-    @When("User adds {string} to cart")
-    public void user_adds_product_to_cart(String product) {
-        inventoryPage.addProductToCart(product);
+    @When("User adds backpack to cart")
+    public void user_adds_backpack_to_cart() {
+        inventoryPage.addBackpackToCart();
     }
 
     @Then("Cart badge should show 1 item")
