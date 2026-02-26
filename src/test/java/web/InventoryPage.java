@@ -41,13 +41,17 @@ public class InventoryPage {
                 By.className("inventory_item"), 0
         ));
 
+
         String formattedName = productName
                 .toLowerCase()
-                .replace(" ", "-");
+                .replace(" ", "-")
+                .replace(".", "")
+                .trim();
 
         String buttonId = "add-to-cart-" + formattedName;
 
         By addToCartButton = By.id(buttonId);
+
 
         wait.until(ExpectedConditions.presenceOfElementLocated(addToCartButton));
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
