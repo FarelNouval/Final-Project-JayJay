@@ -31,21 +31,6 @@ jobs:
       - name: Run API Test
         run: ./gradlew apiTest
 
-      - name: Run Web Test
-        run: ./gradlew webTest
-        continue-on-error: true
-
-      - name: Run API Test
-        run: ./gradlew apiTest
-        continue-on-error: true
-
-      - name: Upload Reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: automation-reports
-          path: |
-            reports/
-            build/reports/
+      
 
      
