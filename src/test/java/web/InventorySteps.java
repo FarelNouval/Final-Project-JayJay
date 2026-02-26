@@ -3,12 +3,16 @@ package web;
 import io.cucumber.java.en.*;
 import io.cucumber.messages.types.Product;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import web.InventoryPage;
 import hooks.WebHooks;
 
 import java.util.Collections;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InventorySteps {
     WebDriver driver = WebHooks.driver;
@@ -52,6 +56,7 @@ public class InventorySteps {
     public void redirected_to_login_page() {
         Assert.assertTrue(inventoryPage.isOnLoginPage());
     }
+
 }
 
 

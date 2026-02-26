@@ -21,6 +21,7 @@ public class InventoryPage {
     By productNames = By.className("inventory_item_name");
     By menuButton = By.id("react-burger-menu-btn");
     By logoutLink = By.id("logout_sidebar_link");
+    By cartIcon = By.className("shopping_cart_link");
 
     public InventoryPage(WebDriver driver) {
         this.driver = driver;
@@ -83,4 +84,14 @@ public class InventoryPage {
     public boolean isOnLoginPage() {
         return driver.getCurrentUrl().contains("saucedemo.com");
     }
+
+    public void clickCart() {
+
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.id("shopping_cart_container")
+        )).click();
+
+        wait.until(ExpectedConditions.urlContains("cart.html"));
+    }
+
 }
