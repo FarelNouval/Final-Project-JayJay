@@ -11,7 +11,8 @@ import io.cucumber.junit.CucumberOptions;
         plugin = {
                 "pretty",
                 "html:reports/web-cucumber-report.html",
-                "json:reports/web-cucumber-report.json"
+                "json:reports/web-cucumber-report.json",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
         tags = "@web"
 )
