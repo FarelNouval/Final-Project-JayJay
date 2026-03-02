@@ -32,8 +32,6 @@ public class InventoryPage {
 
     public void addBackpackToCart() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.id("inventory_container")
         ));
@@ -42,14 +40,13 @@ public class InventoryPage {
                 By.className("inventory_item"), 5
         ));
 
-        By backpackButton = By.id("add-to-cart-sauce-labs-backpack");
-
         WebElement button = wait.until(
-                ExpectedConditions.elementToBeClickable(backpackButton)
+                ExpectedConditions.elementToBeClickable(
+                        By.id("add-to-cart-sauce-labs-backpack")
+                )
         );
 
-        ((JavascriptExecutor) driver)
-                .executeScript("arguments[0].click();", button);
+        button.click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.className("shopping_cart_badge")
@@ -81,17 +78,20 @@ public class InventoryPage {
 
     public void logout() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        By menuButton = By.id("react-burger-menu-btn");
-        By logoutLink = By.id("logout_sidebar_link");
+        WebElement menu = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.id("react-burger-menu-btn")
+                )
+        );
+        menu.click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(menuButton)).click();
+        WebElement logout = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.id("logout_sidebar_link")
+                )
+        );
+        logout.click();
 
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(logoutLink));
-
-
-        wait.until(ExpectedConditions.elementToBeClickable(logoutLink)).click();
         wait.until(ExpectedConditions.urlContains("saucedemo.com"));
     }
 

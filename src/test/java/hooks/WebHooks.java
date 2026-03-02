@@ -28,7 +28,7 @@ public class WebHooks {
         options.addArguments("--window-size=1920,1080");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
     }
 
     @After("@web")

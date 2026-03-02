@@ -29,14 +29,13 @@ public class CheckoutPage {
 
     public void clickCheckout() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement checkoutBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.id("checkout")
+                )
+        );
 
-        By checkoutBtn = By.id("checkout");
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(checkoutBtn));
-
-        driver.findElement(checkoutBtn).click();
+        checkoutBtn.click();
 
         wait.until(ExpectedConditions.urlContains("checkout-step-one"));
     }
@@ -57,25 +56,15 @@ public class CheckoutPage {
         wait.until(ExpectedConditions.elementToBeClickable(
                 By.id("continue")
         )).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.className("cart_item")
-        ));
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.id("finish")
-        ));
+        wait.until(ExpectedConditions.urlContains("checkout-step-two"));
     }
 
     public void clickFinish() {
 
-        By finishBtn = By.id("finish");
-
-        WebElement button = wait.until(
-                ExpectedConditions.elementToBeClickable(finishBtn)
-        );
-
-        ((JavascriptExecutor) driver)
-                .executeScript("arguments[0].click();", button);
+        wait.until(ExpectedConditions.elementToBeClickable(
+                By.id("finish")
+        )).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.className("complete-header")
