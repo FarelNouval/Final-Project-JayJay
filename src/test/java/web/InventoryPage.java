@@ -79,6 +79,7 @@ public class InventoryPage {
 
 
         wait.until(ExpectedConditions.elementToBeClickable(logoutLink)).click();
+        wait.until(ExpectedConditions.urlContains("saucedemo.com"));
     }
 
     public boolean isOnLoginPage() {

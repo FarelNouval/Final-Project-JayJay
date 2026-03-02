@@ -60,11 +60,17 @@ public class CheckoutPage {
 
     public void clickFinish() {
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.id("finish")
+        ));
+
         wait.until(ExpectedConditions.elementToBeClickable(
                 By.id("finish")
         )).click();
 
-        wait.until(ExpectedConditions.urlContains("checkout-complete"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.className("complete-header")
+        ));
     }
 
     public boolean isOrderSuccessful() {
