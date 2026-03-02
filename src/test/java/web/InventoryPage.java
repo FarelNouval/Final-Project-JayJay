@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 public class InventoryPage {
 
@@ -32,15 +34,23 @@ public class InventoryPage {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.id("inventory_container")
         ));
 
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
+                By.className("inventory_item"), 5
+        ));
+
         By backpackButton = By.id("add-to-cart-sauce-labs-backpack");
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(backpackButton));
-        wait.until(ExpectedConditions.elementToBeClickable(backpackButton)).click();
+        WebElement button = wait.until(
+                ExpectedConditions.elementToBeClickable(backpackButton)
+        );
+
+        ((JavascriptExecutor) driver)
+                .executeScript("arguments[0].click();", button);
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.className("shopping_cart_badge")
         ));
